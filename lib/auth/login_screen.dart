@@ -66,10 +66,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             builder: (BuildContext context) {
                               return AlertDialog(
                                 title: const Text('Error'),
-                                content: const Text('Email and password are required.'),
+                                content: const Text(
+                                  'Email and password are required.',
+                                ),
                                 actions: <Widget>[
                                   TextButton(
-                                    onPressed: () => Navigator.of(context).pop(),
+                                    onPressed:
+                                        () => Navigator.of(context).pop(),
                                     child: const Text('OK'),
                                   ),
                                 ],
@@ -150,7 +153,6 @@ Future<void> signInWithEmailAndPassword(
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Close dialog
                 Future.delayed(const Duration(milliseconds: 300), () {
                   GoRouter.of(context).go(AppRouter.kHomeView);
                 });
@@ -191,7 +193,7 @@ Future<void> signInWithEmailAndPassword(
           content: Text(errorMessage),
           actions: <Widget>[
             TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => GoRouter.of(context).push(AppRouter.kLoginView),
               child: const Text('OK'),
             ),
           ],

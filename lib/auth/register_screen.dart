@@ -125,10 +125,7 @@ Future<void> registerWithEmailAndPassword(
             title: const Text('Error'),
             content: const Text('Passwords do not match.'),
             actions: <Widget>[
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('OK'),
-              ),
+              TextButton(onPressed: () {}, child: const Text('OK')),
             ],
           );
         },
@@ -148,10 +145,7 @@ Future<void> registerWithEmailAndPassword(
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop();
-                Future.delayed(const Duration(milliseconds: 300), () {
-                  GoRouter.of(context).go(AppRouter.kLoginView);
-                });
+                GoRouter.of(context).go(AppRouter.kLoginView);
               },
               child: const Text('OK'),
             ),
@@ -188,10 +182,7 @@ Future<void> registerWithEmailAndPassword(
           title: const Text('Error'),
           content: Text(errorMessage),
           actions: <Widget>[
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('OK'),
-            ),
+            TextButton(onPressed: () {}, child: const Text('OK')),
           ],
         );
       },
