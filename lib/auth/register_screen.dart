@@ -122,6 +122,7 @@ Future<void> registerWithEmailAndPassword(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
+            backgroundColor: Colors.white,
             title: const Text('Error'),
             content: const Text('Passwords do not match.'),
             actions: <Widget>[
@@ -140,6 +141,7 @@ Future<void> registerWithEmailAndPassword(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: Colors.white,
           title: const Text('Success'),
           content: const Text('Registered successfully! \nLogin now!'),
           actions: <Widget>[
@@ -179,6 +181,7 @@ Future<void> registerWithEmailAndPassword(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: Colors.white,
           title: const Text('Error'),
           content: Text(errorMessage),
           actions: <Widget>[

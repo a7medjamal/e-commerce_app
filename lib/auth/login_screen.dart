@@ -65,6 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
+                                backgroundColor: Colors.white,
                                 title: const Text('Error'),
                                 content: const Text(
                                   'Email and password are required.',
@@ -148,6 +149,7 @@ Future<void> signInWithEmailAndPassword(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: Colors.white,
           title: const Text('Success'),
           content: const Text('Signed in successfully!'),
           actions: <Widget>[
@@ -189,6 +191,7 @@ Future<void> signInWithEmailAndPassword(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: Colors.white,
           title: const Text('Error'),
           content: Text(errorMessage),
           actions: <Widget>[
