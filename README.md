@@ -11,7 +11,6 @@ This template covers essential e-commerce functionalities, including:
 - **Cart Management**
 - **Order Placement & Tracking**
 - **Wishlist Functionality**
-- **Payment Integration**
 - **User Profile Management**
 - **Dark Mode Support**
 
