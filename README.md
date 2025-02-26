@@ -30,8 +30,8 @@ Before setting up the project, ensure you have the following installed:
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-repo/ecommerce-app.git
-   cd ecommerce-app
+   git clone https://github.com/a7medjamal/e-commerce_app
+   cd e-commerce_app
    ```
 
 2. Install dependencies:
@@ -105,8 +105,8 @@ lib/
 
 - **Flutter**: UI Development
 - **Dart**: Programming Language
-- **Provider / Bloc**: State Management
-- **Firebase / Supabase**: Authentication & Backend (Optional)
+- **Bloc**: State Management
+- **Firebase**: Authentication & Backend (Optional)
 - **Hive / SharedPreferences**: Local Storage
 
 ## Contribution Guidelines
