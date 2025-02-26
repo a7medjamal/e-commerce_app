@@ -2,8 +2,9 @@
 
 import 'package:e_commerce_app/features/auth/presentation/login_screen.dart';
 import 'package:e_commerce_app/features/auth/presentation/register_screen.dart';
-import 'package:e_commerce_app/features/home/home_screen.dart';
-import 'package:e_commerce_app/features/product/presentation/products_screen.dart';
+import 'package:e_commerce_app/features/home/data/models/product_model.dart';
+import 'package:e_commerce_app/features/home/presentation/home_screen.dart';
+import 'package:e_commerce_app/features/home/presentation/products_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -23,7 +24,10 @@ class AppRouter {
       ),
       GoRoute(
         path: kProductView,
-        builder: (context, state) => const ProductDetailPage(),
+        builder: (context, state) {
+          final product = state.extra as Product;
+          return ProductDetailScreen(product: product);
+        },
       ),
     ],
   );
