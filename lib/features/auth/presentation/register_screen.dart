@@ -1,11 +1,8 @@
 // ignore_for_file: unused_local_variable, use_build_context_synchronously
+import 'package:e_commerce_app/features/auth/data/user_register.dart';
+import 'package:e_commerce_app/features/auth/widgets/custom_app_bar.dart';
 import 'package:e_commerce_app/features/auth/widgets/custom_text_field.dart';
-import 'package:e_commerce_app/core/AppRoutes.dart';
-import 'package:e_commerce_app/features/auth/widgets/user_alert.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import '../widgets/custom_button.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -29,7 +26,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CustomAppBarr(showUserName: false),
+                const CustomAppBar(),
                 const SizedBox(height: 150),
                 const Text(
                   'Register!',
@@ -80,93 +77,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class CustomAppBarr extends StatelessWidget {
-  const CustomAppBarr({
-    super.key,
-    this.userName = 'User',
-    required this.showUserName,
-  });
-  final String userName;
-  final bool showUserName;
-  @override
-  Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(top: 40, bottom: 15),
-      child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              'Flutter Shopify',
-              style: TextStyle(color: Colors.black, fontSize: 24),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-Future<void> registerWithEmailAndPassword(
-  String email,
-  String password,
-  String confirmPassword,
-  BuildContext context,
-) async {
-  try {
-    if (password != confirmPassword) {
-      UserAlertDialog(
-        context: context,
-        title: 'Error',
-        content: 'Passwords do not match.',
-        buttonText: 'OK',
-        onPressed: () {},
-      );
-      return;
-    }
-
-    UserCredential userCredential = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email, password: password);
-    UserAlertDialog(
-      context: context,
-      title: 'Success',
-      content: 'Registered successfully! \nLogin now!',
-      onPressed: () {
-        GoRouter.of(context).go(AppRouter.kLoginView);
-      },
-      buttonText: 'OK',
-    );
-  } catch (e) {
-    String errorMessage = 'Something went wrong. Please try again.';
-    if (e is FirebaseAuthException) {
-      switch (e.code) {
-        case 'email-already-in-use':
-          errorMessage = 'This email is already registered.';
-          break;
-        case 'weak-password':
-          errorMessage = 'Password should be at least 6 characters.';
-          break;
-        case 'invalid-email':
-          errorMessage = 'Please enter a valid email address.';
-          break;
-        default:
-          errorMessage = e.message ?? errorMessage;
-      }
-    }
-
-    if (kDebugMode) {
-      print('Failed to register: $e');
-    }
-    UserAlertDialog(
-      context: context,
-      title: 'Error',
-      content: errorMessage,
-      buttonText: 'OK',
-      onPressed: () {},
     );
   }
 }
