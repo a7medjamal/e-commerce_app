@@ -1,9 +1,9 @@
 // ignore_for_file: file_names
 
-import 'package:e_commerce_app/auth/login_screen.dart';
-import 'package:e_commerce_app/auth/register_screen.dart';
+import 'package:e_commerce_app/features/auth/presentation/login_screen.dart';
+import 'package:e_commerce_app/features/auth/presentation/register_screen.dart';
 import 'package:e_commerce_app/features/home/home_screen.dart';
-import 'package:e_commerce_app/features/products/presentation/products_screen.dart';
+import 'package:e_commerce_app/features/product/presentation/products_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
