@@ -1,11 +1,12 @@
 // ignore_for_file: unused_local_variable, use_build_context_synchronously
-import 'package:e_commerce_app/auth/widgets/custom_text_field.dart';
+import 'package:e_commerce_app/features/auth/widgets/custom_text_field.dart';
 import 'package:e_commerce_app/core/AppRoutes.dart';
+import 'package:e_commerce_app/features/auth/widgets/user_alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../core/widgets/custom_button.dart';
+import '../widgets/custom_button.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -118,42 +119,26 @@ Future<void> registerWithEmailAndPassword(
 ) async {
   try {
     if (password != confirmPassword) {
-      showDialog(
+      UserAlertDialog(
         context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor: Colors.white,
-            title: const Text('Error'),
-            content: const Text('Passwords do not match.'),
-            actions: <Widget>[
-              TextButton(onPressed: () {}, child: const Text('OK')),
-            ],
-          );
-        },
+        title: 'Error',
+        content: 'Passwords do not match.',
+        buttonText: 'OK',
+        onPressed: () {},
       );
       return;
     }
 
     UserCredential userCredential = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
-
-    showDialog(
+    UserAlertDialog(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Colors.white,
-          title: const Text('Success'),
-          content: const Text('Registered successfully! \nLogin now!'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                GoRouter.of(context).go(AppRouter.kLoginView);
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        );
+      title: 'Success',
+      content: 'Registered successfully! \nLogin now!',
+      onPressed: () {
+        GoRouter.of(context).go(AppRouter.kLoginView);
       },
+      buttonText: 'OK',
     );
   } catch (e) {
     String errorMessage = 'Something went wrong. Please try again.';
@@ -176,19 +161,12 @@ Future<void> registerWithEmailAndPassword(
     if (kDebugMode) {
       print('Failed to register: $e');
     }
-
-    showDialog(
+    UserAlertDialog(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Colors.white,
-          title: const Text('Error'),
-          content: Text(errorMessage),
-          actions: <Widget>[
-            TextButton(onPressed: () {}, child: const Text('OK')),
-          ],
-        );
-      },
+      title: 'Error',
+      content: errorMessage,
+      buttonText: 'OK',
+      onPressed: () {},
     );
   }
 }

@@ -3,6 +3,7 @@
 import 'package:e_commerce_app/features/auth/widgets/custom_text_field.dart';
 import 'package:e_commerce_app/core/AppRoutes.dart';
 import 'package:e_commerce_app/features/auth/widgets/custom_button.dart';
+import 'package:e_commerce_app/features/auth/widgets/user_alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -61,24 +62,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       backgroundColor: Colors.green,
                       onPressed: () {
                         if (_email.isEmpty || _password.isEmpty) {
-                          showDialog(
+                          UserAlertDialog(
                             context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                backgroundColor: Colors.white,
-                                title: const Text('Error'),
-                                content: const Text(
-                                  'Email and password are required.',
-                                ),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed:
-                                        () => Navigator.of(context).pop(),
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              );
+                            title: 'Error',
+                            content: 'Email and password are required.',
+                            onPressed: () {
+                              Navigator.of(context).pop();
                             },
+                            buttonText: 'OK',
                           );
                           return;
                         }
@@ -144,29 +135,18 @@ Future<void> signInWithEmailAndPassword(
     );
     UserCredential userCredential = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password);
-    Navigator.of(context).pop();
-    showDialog(
+    GoRouter.of(context).pop();
+    UserAlertDialog(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Colors.white,
-          title: const Text('Success'),
-          content: const Text('Signed in successfully!'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Future.delayed(const Duration(milliseconds: 300), () {
-                  GoRouter.of(context).go(AppRouter.kHomeView);
-                });
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        );
+      title: 'Success',
+      content: 'Welcome back ${userCredential.user!.email}',
+      onPressed: () {
+        GoRouter.of(context).push(AppRouter.kHomeView);
       },
+      buttonText: 'OK',
     );
   } catch (e) {
-    Navigator.of(context).pop();
+    GoRouter.of(context).pop();
     String errorMessage = 'Failed to sign in. Please try again.';
     if (e is FirebaseAuthException) {
       switch (e.code) {
@@ -187,21 +167,14 @@ Future<void> signInWithEmailAndPassword(
     if (kDebugMode) {
       print('Failed to sign in: $e');
     }
-    showDialog(
+    UserAlertDialog(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Colors.white,
-          title: const Text('Error'),
-          content: Text(errorMessage),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () => GoRouter.of(context).push(AppRouter.kLoginView),
-              child: const Text('OK'),
-            ),
-          ],
-        );
+      title: 'Error',
+      content: errorMessage,
+      onPressed: () {
+        GoRouter.of(context).push(AppRouter.kLoginView);
       },
+      buttonText: 'OK',
     );
   }
 }
