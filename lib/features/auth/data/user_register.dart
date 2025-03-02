@@ -33,7 +33,7 @@ Future<void> registerWithEmailAndPassword(
       content: 'Registered successfully! \nLogin now!',
       buttonText: 'OK',
       onPressed: () {
-        GoRouter.of(context).go(AppRouter.kLoginView);
+        GoRouter.of(context).goNamed(AppRouter.kLoginView);
       },
     );
   } catch (e) {
@@ -53,7 +53,6 @@ Future<void> registerWithEmailAndPassword(
           errorMessage = e.message ?? errorMessage;
       }
     }
-
     if (kDebugMode) {
       print('Failed to register: $e');
     }

@@ -26,7 +26,7 @@ Future<void> signInWithEmailAndPassword(
       content: 'Welcome back ${userCredential.user!.email}',
       buttonText: 'OK',
       onPressed: () {
-        GoRouter.of(context).push(AppRouter.kHomeView);
+        GoRouter.of(context).replace(AppRouter.kHomeView);
       },
     );
   } catch (e) {

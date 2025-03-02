@@ -14,10 +14,13 @@ class AppRouter {
   static const String kProductView = '/product';
 
   static final GoRouter router = GoRouter(
-    initialLocation: '/',
+    initialLocation: kLoginView,
     routes: [
       GoRoute(path: kHomeView, builder: (context, state) => const HomeScreen()),
-      GoRoute(path: '/', builder: (context, state) => const LoginScreen()),
+      GoRoute(
+        path: kLoginView,
+        builder: (context, state) => const LoginScreen(),
+      ),
       GoRoute(
         path: kRegisterView,
         builder: (context, state) => const RegisterScreen(),

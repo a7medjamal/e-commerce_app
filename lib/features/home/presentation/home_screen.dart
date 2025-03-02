@@ -27,29 +27,27 @@ class _HomeScreenState extends State<HomeScreen> {
       create: (context) => ProductBloc(dio: Dio())..add(FetchProductsEvent()),
       child: Scaffold(
         appBar: AppBar(
-          title: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                SizedBox(height: 10),
-                Text(
-                  'Home',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Color(0xff787676),
-                    fontWeight: FontWeight.w600,
-                  ),
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              SizedBox(height: 10),
+              Text(
+                'Home',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Color(0xff787676),
+                  fontWeight: FontWeight.w600,
                 ),
-                Text(
-                  'Wearify',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Color(0xff121111),
-                    fontWeight: FontWeight.w800,
-                  ),
+              ),
+              Text(
+                'Shopify',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Color(0xff121111),
+                  fontWeight: FontWeight.w800,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           actions: [
             Padding(
