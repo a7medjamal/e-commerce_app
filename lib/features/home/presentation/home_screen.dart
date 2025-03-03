@@ -75,7 +75,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 return Center(child: Text('Error: ${state.message}'));
               } else if (state is ProductLoaded) {
                 return GridView.builder(
-                  shrinkWrap: true,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 16,
