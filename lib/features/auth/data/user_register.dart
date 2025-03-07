@@ -33,7 +33,7 @@ Future<void> registerWithEmailAndPassword(
       content: 'Registered successfully! \nLogin now!',
       buttonText: 'OK',
       onPressed: () {
-        GoRouter.of(context).goNamed(AppRouter.kLoginView);
+        GoRouter.of(context).push(AppRouter.kLoginView);
       },
     );
   } catch (e) {

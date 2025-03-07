@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/network/api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -24,7 +25,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductBloc(dio: Dio())..add(FetchProductsEvent()),
+      create:
+          (context) =>
+              ProductBloc(apiService: ApiService(Dio()))
+                ..add(FetchProductsEvent()),
       child: Scaffold(
         appBar: AppBar(
           title: Column(

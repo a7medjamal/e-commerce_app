@@ -12,7 +12,7 @@ class PhotoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kProductView, extra: product);
+        GoRouter.of(context).push(AppRouter.kProductDetailsView, extra: product);
       },
       child: Container(
         width: 160,

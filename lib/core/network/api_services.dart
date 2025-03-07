@@ -8,10 +8,13 @@ class ApiService {
 
   Future<List<Product>> fetchProducts() async {
     try {
-      final response = await dio.get('https://dummyjson.com/products?limit=10&skip=0&select=title,price');
-      List<Product> products = (response.data['products'] as List)
-          .map((productJson) => Product.fromJson(productJson))
-          .toList();
+      final response = await dio.get(
+        'https://dummyjson.com/products?limit=30&skip=0',
+      );
+      List<Product> products =
+          (response.data['products'] as List)
+              .map((productJson) => Product.fromJson(productJson))
+              .toList();
       return products;
     } catch (e) {
       throw Exception('Failed to load products: $e');

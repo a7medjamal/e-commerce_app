@@ -4,14 +4,14 @@ import 'package:e_commerce_app/features/auth/presentation/login_screen.dart';
 import 'package:e_commerce_app/features/auth/presentation/register_screen.dart';
 import 'package:e_commerce_app/features/home/data/models/product_model.dart';
 import 'package:e_commerce_app/features/home/presentation/home_screen.dart';
-import 'package:e_commerce_app/features/home/presentation/products_screen.dart';
+import 'package:e_commerce_app/features/home/presentation/product_detail_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
   static const String kHomeView = '/home';
   static const String kLoginView = '/';
   static const String kRegisterView = '/register';
-  static const String kProductView = '/product';
+  static const String kProductDetailsView = '/productdetails';
 
   static final GoRouter router = GoRouter(
     initialLocation: kLoginView,
@@ -26,7 +26,7 @@ class AppRouter {
         builder: (context, state) => const RegisterScreen(),
       ),
       GoRoute(
-        path: kProductView,
+        path: kProductDetailsView,
         builder: (context, state) {
           final product = state.extra as Product;
           return ProductDetailScreen(product: product);

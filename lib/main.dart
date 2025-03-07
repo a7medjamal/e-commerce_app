@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:e_commerce_app/core/AppRoutes.dart';
+import 'package:e_commerce_app/core/network/api_services.dart';
 import 'package:e_commerce_app/features/home/presentation/bloc/product_bloc.dart';
 import 'package:e_commerce_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,7 +21,10 @@ class EcommerceApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<ProductBloc>(
-      create: (context) => ProductBloc(dio: Dio())..add(FetchProductsEvent()),
+      create:
+          (context) =>
+              ProductBloc(apiService: ApiService(Dio()))
+                ..add(FetchProductsEvent()),
       child: MaterialApp.router(
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
