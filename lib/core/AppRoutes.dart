@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
-import 'package:e_commerce_app/features/auth/presentation/login_screen.dart';
-import 'package:e_commerce_app/features/auth/presentation/register_screen.dart';
+import 'package:e_commerce_app/features/auth/presentation/screens/login_screen.dart';
+import 'package:e_commerce_app/features/auth/presentation/screens/register_screen.dart';
 import 'package:e_commerce_app/features/home/data/models/product_model.dart';
 import 'package:e_commerce_app/features/home/presentation/home_screen.dart';
 import 'package:e_commerce_app/features/home/presentation/product_detail_screen.dart';

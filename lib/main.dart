@@ -1,6 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:e_commerce_app/core/AppRoutes.dart';
 import 'package:e_commerce_app/core/network/api_services.dart';
+import 'package:e_commerce_app/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:e_commerce_app/features/auth/domain/repositories/usecases/login_user.dart';
+import 'package:e_commerce_app/features/auth/domain/repositories/usecases/signup_user.dart';
+import 'package:e_commerce_app/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:e_commerce_app/features/home/presentation/bloc/product_bloc.dart';
 import 'package:e_commerce_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,11 +24,20 @@ class EcommerceApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ProductBloc>(
-      create:
-          (context) =>
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthCubit>(
+          create: (_) => AuthCubit(
+            loginUser: LoginUser(AuthRepositoryImpl()),
+            signUpUser: SignUpUser(AuthRepositoryImpl()),
+          ),
+        ),
+        BlocProvider<ProductBloc>(
+          create: (_) =>
               ProductBloc(apiService: ApiService(Dio()))
                 ..add(FetchProductsEvent()),
+        ),
+      ],
       child: MaterialApp.router(
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
